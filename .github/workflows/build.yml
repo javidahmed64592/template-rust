@@ -18,8 +18,17 @@ jobs:
       - name: Build
         run: cargo build --release
 
+      - name: Get binary name
+        id: get_binary_name
+        run: |
+          REPO_NAME="${{ github.repository }}"
+          REPO_NAME_ONLY="${REPO_NAME##*/}"
+
+          BINARY_NAME="${REPO_NAME_ONLY//-/_}"
+          echo "binary_name=$BINARY_NAME" >> $GITHUB_OUTPUT
+
       - name: Upload release
         uses: actions/upload-artifact@v7
         with:
-          name: template_rust_release
-          path: target/release/template_rust
+          name: ${{ steps.get_binary_name.outputs.binary_name }}_release
+          path: target/release/${{ steps.get_binary_name.outputs.binary_name }}
