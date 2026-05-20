@@ -13,8 +13,6 @@ permissions:
 jobs:
   build-docs:
     runs-on: ubuntu-latest
-    outputs:
-      package_name: ${{ steps.get_package_name.outputs.package_name }}
 
     steps:
       - uses: actions/checkout@v6
@@ -29,11 +27,14 @@ jobs:
       - name: Build documentation
         run: cargo doc --no-deps --release
 
+      - name: Add redirect index
+        run: echo '<meta http-equiv="refresh" content="0; url=./${{ steps.get_package_name.outputs.package_name }}/index.html">' > target/doc/index.html
+
       - name: Upload documentation artifact
         uses: actions/upload-artifact@v7
         with:
           name: docs
-          path: target/doc/${{ steps.get_package_name.outputs.package_name }}
+          path: target/doc
 
   publish-docs:
     runs-on: ubuntu-latest
