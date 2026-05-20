@@ -1,6 +1,7 @@
 [![Rust](https://img.shields.io/badge/Rust-1.95.0-blue?style=flat-square&logo=rust)](https://www.rust-lang.org/)
 [![CI](https://img.shields.io/github/actions/workflow/status/javidahmed64592/template-rust/ci.yml?branch=main&style=flat-square&label=CI&logo=github)](https://github.com/javidahmed64592/template-rust/actions/workflows/ci.yml)
 [![Build](https://img.shields.io/github/actions/workflow/status/javidahmed64592/template-rust/build.yml?branch=main&style=flat-square&label=Build&logo=github)](https://github.com/javidahmed64592/template-rust/actions/workflows/build.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <!-- omit from toc -->
 # Template Rust Repository
