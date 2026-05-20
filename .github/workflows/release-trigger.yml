@@ -16,12 +16,12 @@ jobs:
         id: check_skip_release
         run: |
           REPO_NAME="${{ github.repository }}"
-          REPO_NAME_ONLY="${REPO_NAME##*/}"
+          REPO_NAME="${REPO_NAME##*/}"
+          REPO_NAME="${REPO_NAME//-/_}"
           PACKAGE_NAME=$(cargo pkgid | cut -d# -f2 | cut -d@ -f1)
 
-          # If names are different, skip the release trigger
-          if [ "$PACKAGE_NAME" != "$REPO_NAME_ONLY" ]; then
-            echo "Package name '$PACKAGE_NAME' does not match repository name '$REPO_NAME_ONLY'. Skipping release trigger."
+          if [ "$PACKAGE_NAME" != "$REPO_NAME" ]; then
+            echo "Package name '$PACKAGE_NAME' does not match repository name '$REPO_NAME'. Skipping release trigger."
             echo "skip_release=true" >> $GITHUB_OUTPUT
             exit 0
           fi
